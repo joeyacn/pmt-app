@@ -1,3 +1,5 @@
-<p>
-  header works!
-</p>
+<i class="anticon trigger"
+    [class.anticon-menu-fold]="!isCollapsed"
+    [class.anticon-menu-unfold]="isCollapsed"
+    (click)="isCollapsed=!isCollapsed">
+</i>
