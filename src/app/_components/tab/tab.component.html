@@ -1,0 +1,20 @@
+<nz-tabset
+  [nzType]="'card'"
+  [nzSize]="size"
+  [nzSelectedIndex]="index"
+  [nzTabBarExtraContent]="extraTemplate">
+  <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <div>
+        <i [ngClass]="tab.tabIcon"></i>{{ tab.tabName }}
+        <i *ngIf="tab.tabName != 'Welcome'" class="anticon anticon-close" (click)="closeTab(tab)"></i>
+      </div>
+    </ng-template>
+    <app-content></app-content>
+  </nz-tab>
+</nz-tabset>
+<ng-template #extraTemplate>
+    <i class="ant-tabs-new-tab anticon anticon-left" (click)="prevTab()"></i>
+    <i class="ant-tabs-new-tab anticon anticon-right" (click)="nextTab()"></i>
+    <i class="ant-tabs-new-tab anticon anticon-close" (click)="closeAllTab()"></i>
+</ng-template>
