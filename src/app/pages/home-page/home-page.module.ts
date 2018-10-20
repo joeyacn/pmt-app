@@ -9,12 +9,20 @@ import { MenuComponent } from '../../_components/menu/menu.component';
 import { HomePageComponent } from './home-page.component';
 import { homeRouter } from './home-page.router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzMenuItemDirective } from 'ng-zorro-antd/menu/nz-menu-item.directive';
+import { NzMenuDirective } from 'ng-zorro-antd/menu/nz-menu.directive';
+import { NzMenuModule } from 'ng-zorro-antd/menu/nz-menu.module';
+import { NzSubMenuComponent } from 'ng-zorro-antd/menu/nz-submenu.component';
 
 @NgModule({
   imports: [
     CommonModule,
     homeRouter,
     NgZorroAntdModule,
+    // NzMenuItemDirective,
+    // NzMenuDirective,
+    // NzMenuModule,
+    // NzSubMenuComponent
   ],
   declarations: [
     ContentComponent,
@@ -24,6 +32,17 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     TabComponent,
     MenuComponent,
     HomePageComponent,
+    // NzMenuItemDirective,
+    // NzMenuDirective,
+    // NzMenuModule,
+    // NzSubMenuComponent
+  ],
+  providers:[
+    // NzMenuItemDirective,
+    // NzMenuDirective,
+    // NzMenuModule,
+    // NzSubMenuComponent
   ]
+
 })
 export class HomePageModule { }

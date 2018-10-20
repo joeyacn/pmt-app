@@ -1,5 +1,66 @@
 <div>
-  <ul nz-menu [nzInlineCollapsed]="isCollapsed" [nzMode]="'inline'" [nzTheme]="'dark'" (nzClick)="menuClicked()">
+<ng-container *ngTemplateOutlet="extraTemplate; context:{ $implicit: item }"></ng-container>
+
+</div>
+
+
+<ng-template #extraTemplate let-item>
+
+    <ul nz-menu [nzInlineCollapsed]="isCollapsed" [nzMode]="'inline'" [nzTheme]="'dark'">
+    <li *ngFor="let subitem of item">
+      <ul>
+    <li nz-menu-item *ngIf="subitem.subMenu.length <= 0" (click)="menuClicked(subitem.text)">
+      <i class="{{subitem.icon}}" *ngIf="subitem.icon"></i>
+      <span>{{subitem.text}}</span>
+    </li>
+    <li nz-submenu *ngIf="subitem.subMenu.length > 0">
+      <span title>
+        <i class="{{subitem.icon}}" *ngIf="subitem.icon"></i>
+        <span>{{subitem.text}}</span>
+      </span>
+      <!-- <ul style="margin-left:10px; "> -->
+        <ng-container *ngTemplateOutlet="extraTemplate; context:{ $implicit: subitem.subMenu }"></ng-container>
+      <!-- </ul> -->
+    </li>
+      </ul>
+    </li>
+
+  </ul>
+</ng-template>
+
+<div>
+    <ul nz-menu [nzInlineCollapsed]="isCollapsed" [nzMode]="'inline'" (nzClick)="menuClicked()">
+  <li nz-menu-item>
+    <i class="anticon anticon-mail"></i>
+    <span>菜单项1</span>
+  </li>
+  <li nz-submenu>
+    <span title>
+      <i class="anticon anticon-appstore"></i>
+      <span>子菜单1</span>
+    </span>
+    <ul>
+      <li nz-menu-item>
+        <i class="anticon anticon-setting"></i>
+        <span>子菜单项1</span>
+      </li>
+      <li nz-menu-item nzDisabled>
+        <i class="anticon anticon-setting"></i>
+        <span>子菜单项2</span>
+      </li>
+        <ul nz-menu [nzInlineCollapsed]="isCollapsed" [nzMode]="'inline'" (nzClick)="menuClicked()">
+          <li nz-menu-item>
+            <i class="anticon anticon-mail"></i>
+            <span>菜单项1</span>
+          </li>
+          </ul>
+    </ul>
+  </li>
+  </ul>
+</div>
+
+<div>
+  <ul nz-menu [nzInlineCollapsed]="isCollapsed" [nzMode]="'inline'" (nzClick)="menuClicked()">
     <li nz-menu-item>
       <i class="anticon anticon-mail"></i>
       <span>菜单项1</span>
@@ -15,10 +76,16 @@
           <span>子菜单项1</span>
         </li>
         <li nz-menu-item nzDisabled>
-            <i class="anticon anticon-setting"></i>
-            <span>子菜单项2</span>
-          </li>
+          <i class="anticon anticon-setting"></i>
+          <span>子菜单项2</span>
+        </li>
       </ul>
     </li>
   </ul>
 </div>
+
+
+
+
+
+

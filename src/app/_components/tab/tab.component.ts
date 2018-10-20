@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Tab } from '../../_lib/tab_type'
+import { TabItem } from '../../_models/tab-item';
+import { TabData } from '../../../assets/object/tab-data';
 
 @Component({
   selector: 'app-tab',
@@ -8,20 +9,7 @@ import { Tab } from '../../_lib/tab_type'
 })
 export class TabComponent implements OnInit {
 
-  tabs: Tab[] = [
-    {
-      tabName  : 'Welcome',
-      tabIcon  : 'anticon anticon-global'
-    },
-    {
-      tabName  : 'Tab 1',
-      tabIcon  : 'anticon anticon-github'
-    },
-    {
-      tabName  : 'Tab 2',
-      tabIcon  : 'anticon anticon-android'
-    }
-  ];
+  tabs = TabData;
 
   size = 'small';
   index = 0;
@@ -31,24 +19,28 @@ export class TabComponent implements OnInit {
   ngOnInit() {
   }
 
-  prevTab(tab: Tab): void {
+  prevTab(tab: TabItem): void {
     if ( this.index > 0 ) {
       this.index = this.index - 1;
     }
   }
 
-  nextTab(tab: Tab): void {
-    if ( this.index < this.tabs.length ) {
+  nextTab(tab: TabItem): void {
+    if ( this.index < this.tabs.length - 1 ) {
       this.index = this.index + 1;
     }
   }
 
-  closeTab(tab): void {
+  closeTab(tab: TabItem): void {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
   }
 
-  closeAllTab(tab): void {
-    this.tabs.splice(1, this.tabs.length-1);
+  closeAllTab(tab: TabItem): void {
+    this.tabs.splice(1, this.tabs.length - 1);
+  }
+
+  newTab(): void {
+    this.tabs.push({tabName: 'New Tab'});
   }
 
 }

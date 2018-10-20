@@ -1,4 +1,4 @@
-export class Tab {
+export class TabItem {
     menuName?: string;
     menuComponentName?: string;
     tabName: string;
